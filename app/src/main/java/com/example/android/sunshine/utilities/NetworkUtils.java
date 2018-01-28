@@ -15,9 +15,13 @@
  */
 package com.example.android.sunshine.utilities;
 
+import android.net.Uri;
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -66,7 +70,27 @@ public final class NetworkUtils {
      */
     public static URL buildUrl(String locationQuery) {
         // TODO (1) Fix this method to return the URL used to query Open Weather Map's API
-        return null;
+        Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
+                .appendQueryParameter(QUERY_PARAM, locationQuery)
+                .appendQueryParameter(FORMAT_PARAM, format)
+                .appendQueryParameter(UNITS_PARAM, units)
+                .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
+                .build();
+        URL weatherSearchUrl = null;
+        try {
+            weatherSearchUrl = new URL(builtUri.toString());
+            //would like to figure out what to put in for expression in log call
+            Log.e(TAG, "buildUrl: entered URL builder");
+
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+
+        Log.v(TAG, "Built URI " + weatherSearchUrl);
+        //past iteration from documentation, forgot the blurb about using a"google?" api version of OWM.org
+        //String weatherSearchString = "api.openweathermap.org/data/2.5/weather?q={"+locationQuery+"}";
+        //URL = new URL(weatherSearchString);
+        return weatherSearchUrl;
     }
 
     /**
