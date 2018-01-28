@@ -15,9 +15,14 @@
  */
 package com.example.android.sunshine;
 
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.InflateException;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.android.sunshine.data.SunshinePreferences;
@@ -29,6 +34,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mWeatherTextView;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +101,51 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
+
     }
 
-    // TODO (2) Create a menu resource in res/menu/ called forecast.xml
-    // TODO (3) Add one item to the menu with an ID of action_refresh
-    // TODO (4) Set the title of the menu item to "Refresh" using strings.xml
+    // DONE (2) Create a menu resource in res/menu/ called forecast.xml
 
-    // TODO (5) Override onCreateOptionsMenu to inflate the menu for this Activity
+    // DONE (3) Add one item to the menu with an ID of action_refresh
+    // DONE (4) Set the title of the menu item to "Refresh" using strings.xml
+
+    // DONE (5) Override onCreateOptionsMenu to inflate the menu for this Activity
+
+    @Override
+    //wanted
+    public boolean onCreateOptionsMenu(Menu menu) {
+        boolean succ = true;
+        try {
+            getMenuInflater().inflate(R.menu.forecast, menu);
+            Log.v(TAG, "InflateOccurring");
+
+        }
+        catch (InflateException e){
+            e.printStackTrace();
+            succ = false;
+            Log.v(TAG, "Inflate Exception " + e.toString());
+        }
+        return succ;
+    }
+
     // TODO (6) Return true to display the menu
 
     // TODO (7) Override onOptionsItemSelected to handle clicks on the refresh button
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            //sat here researching this for 10 min to find out why setting Text to empty string wasn't working!!!
+            //now it's working!!! -- if I wanted to flash a little info here I could (like res string)
+            //mWeatherTextView.setText(R.string.action_refresh);
+
+            mWeatherTextView.setText("");
+            loadWeatherData();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
