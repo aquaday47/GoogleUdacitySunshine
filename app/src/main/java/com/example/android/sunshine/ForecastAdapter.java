@@ -108,7 +108,10 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         String weatherForThisDay = mWeatherData[position];
         forecastAdapterViewHolder.mWeatherTextView.setText(weatherForThisDay);
     }
-
+    public String getWeatherByDay(String index){
+        String weather = mWeatherData[Integer.parseInt(index)];
+        return weather;
+    }
     /**
      * This method simply returns the number of items to display. It is used behind the scenes
      * to help layout our Views and for animations.

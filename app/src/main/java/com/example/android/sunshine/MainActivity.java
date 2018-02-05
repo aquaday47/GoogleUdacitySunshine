@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity
 
     // TODO (9) Override ForecastAdapterOnClickHandler's onListItemClick !!! method
     // TODO (10) Show a Toast when an item is clicked, displaying that item's weather data
+    //NOTE: This is to toast the forecast!
     @Override
     public void onListItemClick(String clickedItemIndex) /*throws exception*/ {
 
@@ -118,8 +119,10 @@ public class MainActivity extends AppCompatActivity
             mToast.cancel();
         }
         //I need to correlate this index with the data!
-        String toastMsg = "Item #" + clickedItemIndex + " clicked.";
-        //but we don't need to access the RV, we have the adapter for that...
+        //convert index to weather
+        String clickedWeather = mForecastAdapter.getWeatherByDay(clickedItemIndex);
+        String toastMsg = "weather: " + clickedWeather + " on clicked day.";
+
         mToast = Toast.makeText(this, toastMsg, Toast.LENGTH_LONG);
         mToast.show();
     }
