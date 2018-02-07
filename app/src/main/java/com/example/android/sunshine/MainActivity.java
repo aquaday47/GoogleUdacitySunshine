@@ -15,6 +15,8 @@
  */
 package com.example.android.sunshine;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -109,16 +111,23 @@ public class MainActivity extends AppCompatActivity
         new FetchWeatherTask().execute(location);
     }
 
-    // TODO (9) Override ForecastAdapterOnClickHandler's onListItemClick !!! method
+    //I think these TODOs are residual from past work perhaps?
+    // TODO (9) Override ForecastAdapterOnClickHandler's onClick method
     // TODO (10) Show a Toast when an item is clicked, displaying that item's weather data
     @Override
     public void onClick(String weatherForDay) {
+        /*
         if (mToast!=null){
             mToast.cancel();
         }
         String toastMsg = "Weather weather here here " + weatherForDay;
         mToast = Toast.makeText(this,toastMsg, Toast.LENGTH_LONG);
         mToast.show();
+        */
+        Context context = this;
+        Class destinationClasss = DetailActivity.class;
+        Intent intentToZoom = new Intent(context, destinationClasss);
+        startActivity(intentToZoom);
     }
 
 
