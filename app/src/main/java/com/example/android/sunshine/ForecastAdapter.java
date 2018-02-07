@@ -140,4 +140,9 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         mWeatherData = weatherData;
         notifyDataSetChanged();
     }
+
+    public String getWeatherByDay(String dayIndex){
+        String weather = mWeatherData[Integer.parseInt(dayIndex)];
+        return weather;
+    }
 }
