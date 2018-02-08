@@ -225,13 +225,27 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         // TODO (2) Launch the map when the map menu item is clicked
         if (id == R.id.action_open_map){
             //ShareCompat.IntentBuilder.from(this).
-            Uri.Builder builder = new Uri.Builder();
-            builder.scheme("geo")
-                    .path("0,0");
-            Uri mapUri = builder.build();
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
-            startActivity(mapIntent);
+            OpenLocationInMap();
+
         }
         return super.onOptionsItemSelected(item);
+
+    }
+    private void OpenLocationInMap(){
+        String destination = "19 Madison St. Watsonville, CA";
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("geo")
+                .path("0,0");
+        if (destination != null)
+        {
+            builder.appendQueryParameter("q", destination);
+        }
+        Uri mapUri = builder.build();
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+        if (mapIntent.resolveActivity(getPackageManager())!=null){
+            startActivity(mapIntent);
+        } else {
+            Log.d(TAG, "Couldn't call " + mapUri.toString() + ", no receiving apps installed!");
+        }
     }
 }
