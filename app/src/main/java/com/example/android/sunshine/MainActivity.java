@@ -26,6 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -345,13 +346,12 @@ public class MainActivity extends AppCompatActivity implements
             openLocationInMap();
             return true;
         }
-
-        // TODO (1) Add new Activity called SettingsActivity using Android Studio wizard
-        // Do step 2 in SettingsActivity
-        // TODO (2) Set setDisplayHomeAsUpEnabled to true on the support ActionBar
-
-        // TODO (6) Launch SettingsActivity when the Settings option is clicked
-
+        // TODO //DONE// (6) Launch SettingsActivity when the Settings option is clicked
+        if (id == R.id.action_settings){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
