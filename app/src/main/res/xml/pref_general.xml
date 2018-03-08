@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    // TODO //DONE IT?//(3) Add a PreferenceScreen with an EditTextPreference and ListPreference within the newly created xml resource directory -->
+    <EditTextPreference android:title="@string/pref_location_label"
+        android:defaultValue="@string/pref_location_default"
+        android:key="@string/pref_location_key"
+        android:singleLine="true"
+        android:inputType="text"/>
+
+    <ListPreference android:title="@string/pref_units_label"
+        android:defaultValue="@string/pref_units_metric"
+        android:entryValues="@array/pref_units_values"
+        android:entries="@array/pref_units_options"
+        android:key="@string/pref_units_key" />
+
+</PreferenceScreen>
