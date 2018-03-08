@@ -8,7 +8,7 @@ import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceManager;
+
 import android.support.v7.preference.PreferenceScreen;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,35 +20,8 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
+// TODO (4) Create SettingsFragment and extend PreferenceFragmentCompat
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
-
-    // TODO (4) Create SettingsFragment and extend PreferenceFragmentCompat
-
-    @Override
-    // TODO //DONE/IT// (5) Override onCreatePreferences and add the preference xml file using addPreferencesFromResource
-    // Do step 9 within onCreatePreference
-    // TODO (9) Set the preference summary on each preference that isn't a CheckBoxPreference
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.pref_general);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getContext());
-        PreferenceScreen prefScreen = getPreferenceScreen();
-        int count = prefScreen.getPreferenceCount();
-        for (int i = 0; i<count; i++){
-            Preference p = prefScreen.getPreference(i);
-            if (!(p instanceof CheckBoxPreference)) {
-                String val = sharedPrefs.getString(p.getKey(), "");
-                setPreferenceSummary(p, val);
-            }
-        /*
-        Map<String, ?> keys = sharedPrefs.getAll();
-        for (Map.Entry<String, ?> entry : keys.entrySet()){
-            if (entry.getValue() instanceof CheckBoxPreference){
-
-            }
-        */
-        }
-    }
-
 
 
     // TODO (8) Create a method called setPreferenceSummary that accepts a Preference and an Object and sets the summary of the preference
@@ -68,14 +41,31 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         }
 
     }
+    @Override
+    // TODO //DONE/IT// (5) Override onCreatePreferences and add the preference xml file using addPreferencesFromResource
+    // Do step 9 within onCreatePreference
+    // TODO (9) Set the preference summary on each preference that isn't a CheckBoxPreference
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        addPreferencesFromResource(R.xml.pref_general);
+        SharedPreferences sharedPrefs = getPreferenceScreen().getSharedPreferences();
+        PreferenceScreen prefScreen = getPreferenceScreen();
+        int count = prefScreen.getPreferenceCount();
+        for (int i = 0; i<count; i++){
+            Preference p = prefScreen.getPreference(i);
+            if (!(p instanceof CheckBoxPreference)) {
+                String val = sharedPrefs.getString(p.getKey(), "");
+                setPreferenceSummary(p, val);
+            }
+        /*
+        Map<String, ?> keys = sharedPrefs.getAll();
+        for (Map.Entry<String, ?> entry : keys.entrySet()){
+            if (entry.getValue() instanceof CheckBoxPreference){
 
-
-
-
-
-    public SettingsFragment() {
-        // Required empty public constructor
+            }
+        */
+        }
     }
+
 
     // Do steps 5 - 11 within SettingsFragment
     // TODO (10) Implement OnSharedPreferenceChangeListener from SettingsFragment
