@@ -14,8 +14,8 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:action="http://schemas.android.com/tools"
     package="com.example.android.sunshine">
 
     <!-- This permission is necessary in order for Sunshine to perform network access. -->
@@ -65,6 +65,12 @@
 
         <!-- TODO (8) Declare SunshineFirebaseJobService as a service in the manifest -->
             <!-- TODO (9) Declare an intent filter with the action ACTION_EXECUTE -->
+        <service
+            android:name=".sync.SunshineFirebaseJobService"
+            android:exported="false">
+            <intent-filter><action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/></intent-filter>
+
+        </service>
 
     </application>
 </manifest>
