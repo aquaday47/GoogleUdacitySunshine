@@ -155,6 +155,17 @@ public final class SunshinePreferences {
         return spContainBothLatitudeAndLongitude;
     }
 
+    public static boolean areNotificationsEnabled(Context context){
+        String displayNotificsKey = context.getString(R.string.pref_enable_notifications_key);
+        boolean shouldDisplayNotificsByDefault = context
+                .getResources()
+                .getBoolean(R.bool.show_notifications_by_default);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        boolean shouldDisplayNotifics = prefs.getBoolean(displayNotificsKey, shouldDisplayNotificsByDefault);
+
+        return shouldDisplayNotifics;
+    }
     /**
      * Returns the last time that a notification was shown (in UNIX time)
      *
@@ -191,12 +202,13 @@ public final class SunshinePreferences {
      * @param context Used to access SharedPreferences as well as use other utility methods
      * @return Elapsed time in milliseconds since the last notification was shown
      */
-    public static long getEllapsedTimeSinceLastNotification(Context context) {
+    public static long getElapsedTimeSinceLastNotification(Context context) {
         long lastNotificationTimeMillis =
                 SunshinePreferences.getLastNotificationTimeInMillis(context);
         long timeSinceLastNotification = System.currentTimeMillis() - lastNotificationTimeMillis;
         return timeSinceLastNotification;
     }
+
 
     /**
      * Saves the time that a notification is shown. This will be used to get the ellapsed time
