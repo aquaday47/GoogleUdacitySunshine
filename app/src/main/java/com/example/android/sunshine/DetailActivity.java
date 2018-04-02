@@ -244,6 +244,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 //      TODO (32) Display the pressure
         float press = data.getFloat(PRESSURE_COL);
         String pressString = getString(R.string.format_pressure);
+        mForecastPressure.setText(pressString);
 //      TODO (33) Store a forecast summary in mForecastSummary
         mForecastSummary = String.format("%s - %s - %s/%s",
                 dateText, desc, hiTString, loTString);
