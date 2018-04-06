@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp">
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     - This Guideline divides the screen into a left half and a right half and is used to        -
+     - anchor the views to the middle of the screen.                                             -
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     - Today's date                                                                              -
+     -                                                                                           -
+     - You may notice that the line android:fontFamily="sans-serif" is highlighted in yellow.    -
+     - The reason for the highlighted line is that the fontFamily attribute is not available on  -
+     - versions of Android before 16, and our minimum supported version of Android is 10. This   -
+     - particular issue won't break the app, but you should note that this attribute will be     -
+     - ignored on devices that run an Android version less than 16.                              -
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/date_today"
+        android:layout_marginBottom="16dp"
+        tools:text = "Today, Dec. 9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/icon_today"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:gravity="center"
+        />
+    <ImageView
+        android:id="@+id/icon_today"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/horizontal_middle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/art_clouds"/>
+
+    <!-- Text that describes weather condition -->
+    <TextView
+        android:id="@+id/weather_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintLeft_toLeftOf="@+id/icon_today"
+        app:layout_constraintRight_toRightOf="@+id/icon_today"
+        app:layout_constraintTop_toBottomOf="@+id/icon_today"
+        tools:text="Rainy"/>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     - High temperature for today                                                                -
+     -                                                                                           -
+     - You may notice that the line android:fontFamily="sans-serif" is highlighted in yellow.    -
+     - The reason for the highlighted line is that the fontFamily attribute is not available on  -
+     - versions of Android before 16, and our minimum supported version of Android is 10. This   -
+     - particular issue won't break the app, but you should note that this attribute will be     -
+     - ignored on devices that run an Android version less than 16.                              -
+     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <TextView
+        android:id="@+id/hi_today"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/date_today"
+        app:layout_constraintLeft_toRightOf="@id/icon_today"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        tools:text = "15 \u00B0"/>
+    <TextView
+        android:id="@+id/low_today"
+        android:layout_width="wrap_content"
+        android:textSize="36sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hi_today"
+        app:layout_constraintLeft_toRightOf="@id/icon_today"
+        app:layout_constraintRight_toRightOf="@id/hi_today"
+        tools:text="14 \u00B0"
+        android:gravity="center"/>
+
+
+</android.support.constraint.ConstraintLayout>
