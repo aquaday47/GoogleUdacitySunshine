@@ -46,7 +46,7 @@
             android:layout_weight="1"/>
 
 
-        <include layout="@layout/extra_weather_detail"
+        <include layout="@layout/extra_weather_details"
             android:id="@+id/extra_details"
             android:layout_width="match_parent"
             android:layout_height="0dp"
